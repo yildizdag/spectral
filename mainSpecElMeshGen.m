@@ -4,8 +4,8 @@
 %---------------------------------------------------------------
 %
 % Read the Geometry imported from Rhino:
-FileName = 'specElMesh_sample1_';
-numPatch = 1;
+FileName = 'specElMesh_sample2_';
+numPatch = 4;
 %Degrees of Freedom per each node:
 local_dof = 1;
 %CREATE 2D IGA MESH (reads FileName):
@@ -15,8 +15,8 @@ Nurbs2D = iga2Dmesh(FileName,numPatch,local_dof);
 iga2DmeshPlotNURBS(Nurbs2D);
 %---------------------------------------------------------------
 % Sampling Points for Spec. El. Method
-np_u = 5;
-np_v = 5;
+np_u = 4;
+np_v = 3;
 for k = 1:Nurbs2D.numpatch
     for el = 1:Nurbs2D.nel{k}
         iu = Nurbs2D.INC{k}(Nurbs2D.IEN{k}(1,el),1);   
@@ -44,7 +44,7 @@ for k = 1:Nurbs2D.numpatch
             end
         end
         hold on
-        scatter3(x_sample,y_sample,z_sample,'MarkerEdgeColor','k','MarkerFaceColor',[0 0 0]);
+        scatter3(x_sample,y_sample,z_sample,80,'b','filled');
         hold off
     end
 end

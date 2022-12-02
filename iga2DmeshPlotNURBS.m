@@ -37,7 +37,7 @@ for kk = 1:Nurbs2D.numpatch
         end
     end
     hold on
-    surf(X0,Y0,Z0,'EdgeLighting','none','FaceColor','[0, 0.75, 0]','EdgeColor','none','LineStyle','-');
+    surf(X0,Y0,Z0,'EdgeLighting','none','FaceColor','[.8,1,.8]','EdgeColor','none','LineStyle','-');
     hold off
 end
 
@@ -68,7 +68,7 @@ for kk = 1:Nurbs2D.numpatch
             
             X(jj) = S(1); Y(jj) = S(2); Z(jj) = S(3);
         end
-        plot3(X,Y,Z,'k','LineWidth',1);
+        plot3(X,Y,Z,'k','LineWidth',3);
     end
     
     for ii=1:length(xParametric)
@@ -90,7 +90,7 @@ for kk = 1:Nurbs2D.numpatch
             
             X(jj) = S(1); Y(jj) = S(2); Z(jj) = S(3);
         end
-        plot3(X,Y,Z,'k','LineWidth',1);
+        plot3(X,Y,Z,'k','LineWidth',3);
     end
     
 end
