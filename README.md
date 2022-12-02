@@ -1,1 +1,1 @@
-NURBS-enhanced Mesh Generation for Spectral Element method
+NURBS-Enhanced Mesh Generation for Spectral Element Method
