@@ -6,17 +6,18 @@
 % Read the Geometry imported from Rhino:
 FileName = 'specElMesh_sample2_';
 numPatch = 4;
-%Degrees of Freedom per each node:
+% Degrees of Freedom per each node:
 local_dof = 1;
-%CREATE 2D IGA MESH (reads FileName):
+% CREATE 2D IGA MESH (reads FileName):
 Nurbs2D = iga2Dmesh(FileName,numPatch,local_dof);
 %---------------------------------------------------------------
 % Plot Imported 2-D NURBS Structure
 iga2DmeshPlotNURBS(Nurbs2D);
 %---------------------------------------------------------------
-% Sampling Points for Spec. El. Method
-np_u = 4;
-np_v = 3;
+% Points for Spec. El. Method
+% 5 x 5, 3 x 3, etc.
+np_u = 5;
+np_v = 5;
 for k = 1:Nurbs2D.numpatch
     for el = 1:Nurbs2D.nel{k}
         iu = Nurbs2D.INC{k}(Nurbs2D.IEN{k}(1,el),1);   
