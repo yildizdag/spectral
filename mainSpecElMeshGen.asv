@@ -64,12 +64,15 @@ end
 %---------------------------------------------------------------
 % Nodal Coordinates (nodes)
 % Connectivity (conn)
-%---------------------------------------------------------------
+%
 nodes = uniquetol(nodeData,'ByRows',true);
 conn = zeros(tot_el,np_u*np_v);
 for i = 1:tot_el
+    disp(i)
     for j = 1:np_u*np_v
-        node_id = find(ismembertol(nodes, elData(j,:,i),1E-6,'ByRows',true));
+        disp(j)
+        node_id = find(ismembertol(nodes, elData(j,:,i),1E-6,'ByRows',true)
+        );
         conn(i,j) = node_id;
     end
 end
