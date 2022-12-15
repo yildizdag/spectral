@@ -4,7 +4,7 @@
 %---------------------------------------------------------------
 %
 % Read the Geometry imported from Rhino:
-FileName = 'specElMesh_sample2_';
+FileName = 'specElMesh_sample1_';
 numPatch = 4;
 % Degrees of Freedom per each node:
 local_dof = 1;
@@ -64,15 +64,12 @@ end
 %---------------------------------------------------------------
 % Nodal Coordinates (nodes)
 % Connectivity (conn)
-%
+%---------------------------------------------------------------
 nodes = uniquetol(nodeData,'ByRows',true);
 conn = zeros(tot_el,np_u*np_v);
 for i = 1:tot_el
-    disp(i)
     for j = 1:np_u*np_v
-        disp(j)
-        node_id = find(ismembertol(nodes, elData(j,:,i),1E-6,'ByRows',true)
-        );
+        node_id = find(ismembertol(nodes, elData(j,:,i),1E-6,'ByRows',true));
         conn(i,j) = node_id;
     end
 end

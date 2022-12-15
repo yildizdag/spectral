@@ -4,7 +4,7 @@
 %---------------------------------------------------------------
 %
 % Read the Geometry imported from Rhino:
-FileName = 'specElMesh_sample2_';
+FileName = 'specElMesh_sample1_';
 numPatch = 4;
 % Degrees of Freedom per each node:
 local_dof = 1;
