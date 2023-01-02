@@ -4,8 +4,8 @@
 %---------------------------------------------------------------
 %
 % Read the Geometry imported from Rhino:
-FileName = 'specElMesh_sample1_';
-numPatch = 4;
+FileName = 'elliptical_cutout_';
+numPatch = 6; %Enter # Patches
 % Degrees of Freedom per each node:
 local_dof = 1;
 % CREATE 2D IGA MESH (reads FileName):
