@@ -77,10 +77,10 @@ for i = 1:Nurbs2D.numpatch
     Nurbs2D.edges.el{i,4} = el1*(el2-1)+1 : -el1 : 1;
     
     %Nurbs2D.int{i} = gauss2d(3,3);
-    [xgp,wgp,ngp] = gaussQuad2d(6,6);
-    Nurbs2D.xgp{i} = xgp;
-    Nurbs2D.wgp{i} = wgp;
-    Nurbs2D.ngp{i} = ngp;
+    %[xgp,wgp,ngp] = gaussQuad2d(6,6);
+    %Nurbs2D.xgp{i} = xgp;
+    %Nurbs2D.wgp{i} = wgp;
+    %Nurbs2D.ngp{i} = ngp;
     
 end
 

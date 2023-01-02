@@ -15,7 +15,7 @@ Nurbs2D = iga2Dmesh(FileName,numPatch,local_dof);
 iga2DmeshPlotNURBS(Nurbs2D);
 %---------------------------------------------------------------
 % Points for Spectral Element Method
-% e.g. 5 x 5, 3 x 3, ...
+% e.g. 5 x 5, 3 x 3, .
 np_u = 3;
 np_v = 3;
 tot_el = 0;
