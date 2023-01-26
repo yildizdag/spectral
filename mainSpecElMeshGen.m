@@ -4,8 +4,8 @@
 %---------------------------------------------------------------
 %
 % Read the Geometry imported from Rhino:
-FileName = 'elliptical_cutout_';
-numPatch = 6; %Enter # Patches
+FileName = 'ellipCutout_4patches_';
+numPatch = 4; %Enter # Patches
 % Degrees of Freedom per each node:
 local_dof = 1;
 % CREATE 2D IGA MESH (reads FileName):
@@ -17,7 +17,7 @@ iga2DmeshPlotNURBS(Nurbs2D);
 % Points for Spectral Element Method
 % e.g. 5 x 5, 3 x 3, ...
 np_u = 3;
-np_v = 3;
+np_v = 5;
 tot_el = 0;
 for k = 1:Nurbs2D.numpatch
     tot_el = tot_el + Nurbs2D.nel{k};
@@ -65,11 +65,12 @@ end
 % Nodal Coordinates (nodes)
 % Connectivity (conn)
 %---------------------------------------------------------------
-nodes = uniquetol(nodeData,'ByRows',true);
+TOL = 1E-3; %---> Check!
+nodes = uniquetol(nodeData,TOL,'ByRows',true);
 conn = zeros(tot_el,np_u*np_v);
 for i = 1:tot_el
     for j = 1:np_u*np_v
-        node_id = find(ismembertol(nodes, elData(j,:,i),1E-6,'ByRows',true));
+        node_id = find(ismembertol(nodes, elData(j,:,i),TOL,'ByRows',true));
         conn(i,j) = node_id;
     end
 end
