@@ -17,7 +17,7 @@ iga2DmeshPlotNURBS(Nurbs2D);
 % Points for Spectral Element Method
 % e.g. 5 x 5, 3 x 3, ...
 np_u = 3;
-np_v = 5;
+np_v = 3;
 tot_el = 0;
 for k = 1:Nurbs2D.numpatch
     tot_el = tot_el + Nurbs2D.nel{k};
