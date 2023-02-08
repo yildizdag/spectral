@@ -3,8 +3,10 @@
 % Spectral Element Method
 %---------------------------------------------------------------
 %
+clc; clear; close all;
+addpath('geometry')
 % Read the Geometry imported from Rhino:
-FileName = 'ellipCutout_4patches_';
+FileName = 'circular_cutout_mesh0_';
 numPatch = 4; %Enter # Patches
 % Degrees of Freedom per each node:
 local_dof = 1;
