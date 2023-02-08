@@ -1,6 +1,6 @@
 %---------------------------------------------------------------
 % NURBS-Enhanced Mesh Generator for
-% Spectral Element Method
+% Spectral Element Method (SEM)
 %---------------------------------------------------------------
 %
 clc; clear; close all;
@@ -10,14 +10,26 @@ FileName = 'circular_cutout_mesh0_';
 numPatch = 4; %Enter # Patches
 % Degrees of Freedom per each node:
 local_dof = 1;
-% CREATE 2D IGA MESH (reads FileName):
+%-----------------------------------------------------------------
+% Create 2-D Nurbs Structure (reads FileName)
+%-----------------------------------------------------------------
 Nurbs2D = iga2Dmesh(FileName,numPatch,local_dof);
-%---------------------------------------------------------------
+%--------------------------------------
+% Refinement (if necessary)
+%--------------------------------------
+ur = 1; % Refinement Level in u direction
+vr = 1; % Refinement Level in v direction
+Nurbs2D = hrefine2D(Nurbs2D,1,ur,vr);
+Nurbs2D = hrefine2D(Nurbs2D,2,ur,vr);
+Nurbs2D = hrefine2D(Nurbs2D,3,ur,vr);
+Nurbs2D = hrefine2D(Nurbs2D,4,ur,vr);
+%-----------------------------------------------------
 % Plot Imported 2-D NURBS Structure
+%-----------------------------------------------------
 iga2DmeshPlotNURBS(Nurbs2D);
-%---------------------------------------------------------------
-% Points for Spectral Element Method
-% e.g. 5 x 5, 3 x 3, ...
+%------------------------------------------------------------------------------------
+% Points for Spectral Element Method (e.g. 5 x 5, 3 x 3, etc.)
+%------------------------------------------------------------------------------------
 np_u = 3;
 np_v = 3;
 tot_el = 0;
