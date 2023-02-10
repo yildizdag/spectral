@@ -17,8 +17,8 @@ Nurbs2D = iga2Dmesh(FileName,numPatch,local_dof);
 %--------------------------------------
 % Refinement (if necessary)
 %--------------------------------------
-ur = 1; % Refinement Level in u direction
-vr = 1; % Refinement Level in v direction
+ur = 0; % Refinement Level in u direction
+vr = 0; % Refinement Level in v direction
 Nurbs2D = hrefine2D(Nurbs2D,1,ur,vr);
 Nurbs2D = hrefine2D(Nurbs2D,2,ur,vr);
 Nurbs2D = hrefine2D(Nurbs2D,3,ur,vr);
