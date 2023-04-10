@@ -6,7 +6,7 @@
 clc; clear; close all;
 addpath('geometry')
 % Read the Geometry imported from Rhino:
-FileName = 'ellipCutout_150_';
+FileName = 'ellipCutout_case1_';
 numPatch = 4; %Enter # Patches
 % Degrees of Freedom per each node:
 local_dof = 1;
@@ -17,8 +17,8 @@ Nurbs2D = iga2Dmesh(FileName,numPatch,local_dof);
 %--------------------------------------
 % Refinement (if necessary)
 %--------------------------------------
-ur = 2; % Refinement Level in u direction
-vr = 2; % Refinement Level in v direction
+ur = 0; % Refinement Level in u direction
+vr = 0; % Refinement Level in v direction
 Nurbs2D = hrefine2D(Nurbs2D,1,ur,vr);
 Nurbs2D = hrefine2D(Nurbs2D,2,ur,vr);
 Nurbs2D = hrefine2D(Nurbs2D,3,ur,vr);
