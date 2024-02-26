@@ -2,12 +2,11 @@
 % NURBS-Enhanced Mesh Generator for
 % Spectral Element Method (SEM)
 %---------------------------------------------------------------
-%
 clc; clear; close all;
 addpath('geometry')
 % Read the Geometry imported from Rhino:
-FileName = 'ellipCutout_case1_';
-numPatch = 4; %Enter # Patches
+FileName = 'iga_sample';
+numPatch = 1; %Enter # Patches
 % Degrees of Freedom per each node:
 local_dof = 1;
 %-----------------------------------------------------------------
@@ -17,22 +16,25 @@ Nurbs2D = iga2Dmesh(FileName,numPatch,local_dof);
 %--------------------------------------
 % Refinement (if necessary)
 %--------------------------------------
-ur = 0; % Refinement Level in u direction
-vr = 0; % Refinement Level in v direction
-Nurbs2D = hrefine2D(Nurbs2D,1,ur,vr);
-Nurbs2D = hrefine2D(Nurbs2D,2,ur,vr);
-Nurbs2D = hrefine2D(Nurbs2D,3,ur,vr);
-Nurbs2D = hrefine2D(Nurbs2D,4,ur,vr);
-%-----------------------------------------------------
+% ur = 0; % Refinement Level in u direction
+% vr = 0; % Refinement Level in v direction
+% Nurbs2D = hrefine2D(Nurbs2D,1,ur,vr);
+% Nurbs2D = hrefine2D(Nurbs2D,2,ur,vr);
+% Nurbs2D = hrefine2D(Nurbs2D,3,ur,vr);
+% Nurbs2D = hrefine2D(Nurbs2D,4,ur,vr);
+% Nurbs2D = hrefine2D(Nurbs2D,5,ur,vr);
+%--------------------------------
 % Plot Imported 2-D NURBS Structure
-%-----------------------------------------------------
+%-------------------------------
+figure;
 iga2DmeshPlotNURBS(Nurbs2D);
-%------------------------------------------------------------------------------------
+axis off
+%-------------------------------------------------
 % Points for Spectral Element Method (e.g. 5 x 5, 3 x 3, etc.)
-%------------------------------------------------------------------------------------
-np_u = 3;
-np_v = 3;
-tot_el = 0;
+%-------------------------------------------------
+np_u = 0;
+np_v = 0;
+tot_el = 0; %Total num of elements
 for k = 1:Nurbs2D.numpatch
     tot_el = tot_el + Nurbs2D.nel{k};
 end
@@ -40,6 +42,8 @@ elData = zeros(np_u*np_v,3,tot_el);
 nodeData = zeros(np_u*np_v*tot_el,3);
 count_el = 1;
 count_node = 1;
+figure;
+iga2DmeshPlotNURBS(Nurbs2D);
 for k = 1:Nurbs2D.numpatch
     for el = 1:Nurbs2D.nel{k}
         iu = Nurbs2D.INC{k}(Nurbs2D.IEN{k}(1,el),1);   
@@ -75,16 +79,22 @@ for k = 1:Nurbs2D.numpatch
         count_el = count_el+1;
     end
 end
+axis off
 %---------------------------------------------------------------
+% Patch Connectivity
 % Nodal Coordinates (nodes)
 % Connectivity (conn)
 %---------------------------------------------------------------
-TOL = 1E-3; %---> Check!
-nodes = uniquetol(nodeData,TOL,'ByRows',true);
-conn = zeros(tot_el,np_u*np_v);
+
+TOL = 0.005; %---> Check!
+nodes_sem = uniquetol(nodeData,TOL,'ByRows',true);
+conn_sem = zeros(tot_el,np_u*np_v);
 for i = 1:tot_el
     for j = 1:np_u*np_v
-        node_id = find(ismembertol(nodes, elData(j,:,i),TOL,'ByRows',true));
-        conn(i,j) = node_id;
+        node_id = find(ismembertol(nodes_sem, elData(j,:,i),TOL,'ByRows',true));
+        conn_sem(i,j) = node_id;
     end
 end
+
+save('nodes.mat','nodes_sem');
+save('conn.mat','conn_sem');
