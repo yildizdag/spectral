@@ -32,8 +32,8 @@ axis off
 %-------------------------------------------------
 % Points for Spectral Element Method (e.g. 5 x 5, 3 x 3, etc.)
 %-------------------------------------------------
-np_u = 0;
-np_v = 0;
+np_u = 2;
+np_v = 2;
 tot_el = 0; %Total num of elements
 for k = 1:Nurbs2D.numpatch
     tot_el = tot_el + Nurbs2D.nel{k};
